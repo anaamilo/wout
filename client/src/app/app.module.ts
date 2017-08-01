@@ -12,7 +12,8 @@ import { ExerciseComponent } from './exercise/exercise.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    ExerciseComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +22,7 @@ import { ExerciseComponent } from './exercise/exercise.component';
   ],
   providers: [
     SessionService,
+    ExerciseService,
     { provide: 'BASE_ENDPOINT', useValue: environment.baseEndpoint },
     { provide: 'API_ENDPOINT', useValue: environment.apiEndpoint }
   ],
