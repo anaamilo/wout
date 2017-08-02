@@ -46,8 +46,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
 
-require('./routes')(app);
-
 app.use(session({
   secret: 'angular auth passport secret shh',
   resave: true,
@@ -55,18 +53,12 @@ app.use(session({
   cookie : { httpOnly: true, maxAge: 2419200000 }
 }));
 
-const passportLocalStrategy = require('./Auth/local');
-passportLocalStrategy(passport);
+require('./api/Auth/config');
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-const authRoutes = require('./api/Auth');
-app.use('/api/auth', authRoutes);
-
-app.use((req, res, next) => {
-  res.sendFile(__dirname + '/public/index.html');
-});
+require('./routes')(app);
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
