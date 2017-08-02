@@ -33,8 +33,10 @@ module.exports = {
 
   create: function (req, res) {
     var Exercise = new ExerciseModel({
-		  name : req.body.name,
-		  series : req.body.series
+      userID : req.body.userID,
+      name : req.body.name,
+      muscleGroup : req.body.muscleGroup,
+      series : req.body.series
     });
     Exercise.save(function (err, Exercise) {
       if (err) {
@@ -62,9 +64,11 @@ module.exports = {
         });
       }
 
+      Exercise.userID = req.body.userID ? req.body.userID : Exercise.userID;
       Exercise.name = req.body.name ? req.body.name : Exercise.name;
-	    Exercise.series = req.body.series ? req.body.series : Exercise.series;
-	
+      Exercise.muscleGroup = req.body.muscleGroup ? req.body.muscleGroup : Exercise.muscleGroup;
+      Exercise.series = req.body.series ? req.body.series : Exercise.series;
+      
       Exercise.save(function (err, Exercise) {
         if (err) {
           return res.status(500).json({

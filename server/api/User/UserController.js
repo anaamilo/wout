@@ -1,4 +1,6 @@
 var UserModel = require('./UserModel.js');
+var ExerciseModel = require('../Exercise/ExerciseModel.js');
+var RoutineModel = require('../Routine/RoutineModel.js');
 
 module.exports = {
 
@@ -16,25 +18,27 @@ module.exports = {
 
   show: function (req, res) {
     var id = req.params.id;
-    UserModel.findOne({_id: id}, function (err, User) {
-      if (err) {
-        return res.status(500).json({
-          message: 'Error when getting User.',
-          error: err
-        });
-      }
-      if (!User) {
-        return res.status(404).json({ message: 'No such User'});
-      }
-      return res.json(User);
-    });
+    UserModel.findOne({_id: id})
+      .exec()
+      .then(User => {
+        console.log(User);
+        if (!User) { return res.status(404).json({ message: 'No such User'})};
+        ExerciseModel.find({userID: User._id}).exec().then(Exercise => {
+          RoutineModel.find({userID: User._id}).exec().then(Routine => {
+            return res.json({User: User, Exercise: Exercise, Routine: Routine});
+          })
+        })
+      })
+      .catch(e => res.status(500).json({
+        message: 'Error when getting User.',
+        error: err
+      }));
   },
 
   create: function (req, res) {
     var User = new UserModel({
     	username : req.body.username,
-    	password : req.body.password,
-    	routines : req.body.routines
+    	password : req.body.password
     });
 
     User.save(function (err, User) {
@@ -51,31 +55,30 @@ module.exports = {
   update: function (req, res) {
     var id = req.params.id;
     UserModel.findOne({_id: id}, function (err, User) {
+      if (err) {
+        return res.status(500).json({
+          message: 'Error when getting User',
+          error: err
+        });
+      }
+      if (!User) {
+        return res.status(404).json({
+          message: 'No such User'
+        });
+      }
+
+      User.username = req.body.username ? req.body.username : User.username;
+      User.password = req.body.password ? req.body.password : User.password;
+      
+      User.save(function (err, User) {
         if (err) {
           return res.status(500).json({
-            message: 'Error when getting User',
+            message: 'Error when updating User.',
             error: err
           });
         }
-        if (!User) {
-          return res.status(404).json({
-            message: 'No such User'
-          });
-        }
-
-        User.username = req.body.username ? req.body.username : User.username;
-	      User.password = req.body.password ? req.body.password : User.password;
-	      User.routines = req.body.routines ? req.body.routines : User.routines;
-	
-        User.save(function (err, User) {
-          if (err) {
-            return res.status(500).json({
-              message: 'Error when updating User.',
-              error: err
-            });
-          }
-          return res.json(User);
-        });
+        return res.json(User);
+      });
     });
   },
 
