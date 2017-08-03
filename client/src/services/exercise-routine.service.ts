@@ -4,13 +4,11 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class ExerciseService {
+export class ExerciseRoutineService {
 
-  EXERCISE_ROUTE = '/exercise';
+  ROUTE = '/exerciseroutine';
   ENDPOINT: string;
   options:object = {withCredentials:true};
-
-  params = new URLSearchParams();
 
   constructor(
     @Inject('BASE_ENDPOINT') private BASE,
@@ -18,11 +16,8 @@ export class ExerciseService {
     private http: Http
   ) { this.ENDPOINT = this.BASE + this.API; }
 
-  get(query) {
-    this.params['name'] = query;
-    return this.http.get(`${this.ENDPOINT}${this.EXERCISE_ROUTE}`, {withCredentials:true, params: this.params})
+  create(routineID, exercises) {
+    return this.http.post(`${this.ENDPOINT}${this.ROUTE}`, {routineID:routineID, exercises:exercises}, this.options)
     .map((res) => res.json());
   }
-
 }
-
