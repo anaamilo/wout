@@ -16,27 +16,32 @@ module.exports = {
   },
   show: function (req, res) {
     var id = req.params.id;
-    RoutineModel.findOne({_id: id})
-      .exec()
-      .then(Routine => {
-        console.log(JSON.stringify(Routine._id))
-        if (!Routine) { return res.status(404).json({message: 'No such Routine' });}
-        ExerciseRoutineModel.find({routineID: "598211c43be4b1016e898efc"}).populate('exerciseID').exec().then(Exercises => {
-          return res.json({Routine: Routine, Exercises: Exercises});
+    RoutineModel.findOne({_id : id}, (err, routine) => {
+      ExerciseRoutineModel.find({routineID : routine._id}, {exerciseID: 1, _id: 0}, (err, routines) => {
+        routinesPromises = []
+        routines.forEach((e) => {
+          routinesPromises.push(
+            new Promise((resolve, reject) => {
+              e.populate("exerciseID", (err, routine) => {
+                resolve(routine)
+              });   
+            })
+            )
         })
-      })
-    // ExerciseRoutineModel.find().populate('routineID').populate('exerciseID').exec().then(all => {
-    //       return res.json(all);
-    //     })
-      .catch(e => res.status(500).json({
-        message: 'Error when creating Routine',
-        error: err
-      }));
+        Promise.all(routinesPromises).then(values => {
+          res.status(200).json({
+            routine: routine,
+            exercises: values
+          })
+        })
+      });
+    });
   },
   create: function (req, res) {
     var Routine = new RoutineModel({
       userID : req.body.userID,
-      name : req.body.name
+      name : req.body.name,
+      exercises: req.body.exercises
    });
 
     Routine.save(function (err, Routine) {
@@ -64,8 +69,8 @@ module.exports = {
         });
       }
 
-      Routine.userID = req.body.userID ? req.body.userID : Routine.userID;
       Routine.name = req.body.name ? req.body.name : Routine.name;
+      Routine.exercises = req.body.exercises ? req.body.exercises : Routine.exercises;
 
       Routine.save(function (err, Routine) {
         if (err) {

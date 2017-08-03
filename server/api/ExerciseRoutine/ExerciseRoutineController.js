@@ -47,21 +47,23 @@ module.exports = {
      * ExerciseRoutineController.create()
      */
     create: function (req, res) {
-        var ExerciseRoutine = new ExerciseRoutineModel({
-			exerciseID : req.body.exerciseID,
-			routineID : req.body.routineID
+        req.body.exercises.forEach(e => {
+            var ExerciseRoutine = new ExerciseRoutineModel({
+                exerciseID : req.body.exerciseID,
+                routineID : req.body.routineID
+            });
 
-        });
-
-        ExerciseRoutine.save(function (err, ExerciseRoutine) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when creating ExerciseRoutine',
-                    error: err
-                });
-            }
-            return res.status(201).json(ExerciseRoutine);
-        });
+            ExerciseRoutine.save(function (err, ExerciseRoutine) {
+                if (err) {
+                    return res.status(500).json({
+                        message: 'Error when creating ExerciseRoutine',
+                        error: err
+                    });
+                }
+                console.log(ExerciseRoutine);
+                // return res.status(201).json(ExerciseRoutine);
+            });
+        })
     },
 
     /**

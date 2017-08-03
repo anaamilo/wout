@@ -6,7 +6,9 @@ var ExerciseSchema = new Schema({
 	name: String,
   muscleGroup: {
     type: String,
-    enum: ['leg', 'shoulder', 'chest', 'abdominals', 'adductors'],
+    enum: [
+    'abdominals', 'adductors', 'biceps', 'calves', 'chest', 'forearms', 'glutes', 'hamstrings', 'lats', 'lower back', 'middle back', 'quadriceps', 'shoulders', 'traps', 'triceps'
+    ],
     required: true
   },
 	series: Array

@@ -13,9 +13,8 @@ module.exports = {
     });
   },
 
-  show: function (req, res) {
-    var id = req.params.id;
-    ExerciseModel.findOne({_id: id}, function (err, Exercise) {
+  get: function (req, res) {
+    ExerciseModel.findOne({name: req.query.name}, function (err, Exercise) {
       if (err) {
         return res.status(500).json({
           message: 'Error when getting Exercise.',
