@@ -1,0 +1,8 @@
+<h3> Routine List </h3>
+<a [routerLink]="['routine', 'add']"> Add new routine </a>
+<div>
+  <div *ngFor="let routine of routines">
+    <h3> {{ routine.name }} </h3>
+    <a [routerLink]="['routine', routine._id]"> View Details </a>
+  </div>
+</div>

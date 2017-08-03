@@ -1,0 +1,22 @@
+<h1> Add exercises </h1>
+<form>
+  <fieldset>
+    <label> Exercises </label>
+    
+    <select name="exercises" id="exercises" #exercise>
+      <option value="ab crunch machine">ab crunch machine</option>
+      <option value="ab roller">ab roller</option>
+      <option value="Exercise3">Exer 3</option>
+    </select>
+
+    <button (click)="addExercise(exercise.value); exercise.value = ''"> Add </button>
+
+    <ul>
+      <li *ngFor="let exercise of newRoutine.exercises"> {{ exercise }} </li>
+    </ul>
+
+    <small *ngIf="!newRoutine.exercises.length"> This routine has no exercises :( </small>
+
+  </fieldset>
+  <button (click)="submit(routine._id)"> submit </button>
+</form>
