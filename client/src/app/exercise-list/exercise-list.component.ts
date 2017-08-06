@@ -3,6 +3,7 @@ import { ExerciseService } from '../../services/exercise.service';
 import { ExerciseRoutineService } from '../../services/exercise-routine.service';
 import { Observable } from 'rxjs';
 import { Pipe } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-exercise-list',
@@ -19,7 +20,8 @@ export class ExerciseListComponent implements OnInit {
   selectedCategory:string;
   constructor(
     private exerciseService:ExerciseService,
-    private exerciseRoutineService:ExerciseRoutineService
+    private exerciseRoutineService:ExerciseRoutineService,
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -44,6 +46,7 @@ export class ExerciseListComponent implements OnInit {
   addExercises(){
     this.exerciseRoutineService.update(this.routineID, this.checkedList).subscribe((e:Object) => {
       console.log(this.checkedList);
+      this.router.navigate(['']);
     })
   }
 

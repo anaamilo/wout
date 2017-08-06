@@ -1,22 +1,16 @@
-<h1> Add exercises </h1>
+<div *ngIf="(data)">
+<h1> {{data.routine.name}} </h1>
+</div>
+<h2> Add exercises </h2>
 <form>
   <fieldset>
-    <label> Exercises </label>
-    
-    <select name="exercises" id="exercises" #exercise>
-      <option value="ab crunch machine">ab crunch machine</option>
-      <option value="ab roller">ab roller</option>
-      <option value="Exercise3">Exer 3</option>
-    </select>
-
-    <button (click)="addExercise(exercise.value); exercise.value = ''"> Add </button>
-
-    <ul>
-      <li *ngFor="let exercise of newRoutine.exercises"> {{ exercise }} </li>
-    </ul>
-
-    <small *ngIf="!newRoutine.exercises.length"> This routine has no exercises :( </small>
-
+    <app-exercise-list [routineID]="routineID"></app-exercise-list>
   </fieldset>
-  <button (click)="submit(routine._id)"> submit </button>
 </form>
+<ul>
+  <li *ngFor="let exercise of exercises">
+    {{exercise.exerciseID.name}}
+  </li>
+</ul>
+<button (click)="remove(data.routine._id)">Delete routine</button>
+<a [routerLink]="['']"> Back to routine list </a>

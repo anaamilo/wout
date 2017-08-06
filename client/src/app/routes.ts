@@ -9,6 +9,6 @@ export const routes: Routes = [
     { path: '', component: RoutineListComponent },
     { path: 'login', component: LoginFormComponent },
     { path: 'routine/add', component: RoutineFormComponent },
-    { path: 'routine/:id', component: RoutineDetailComponent },    
+    { path: 'routine/:id', component: RoutineDetailComponent },
     { path: '**', redirectTo: '' }
 ];
