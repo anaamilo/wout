@@ -20,4 +20,10 @@ export class ExerciseRoutineService {
     return this.http.post(`${this.ENDPOINT}${this.ROUTE}`, {routineID:routineID, exercises:exercises}, this.options)
     .map((res) => res.json());
   }
+
+  update(routineID, exercises) {
+    return this.http.post(`${this.ENDPOINT}${this.ROUTE}`, {routineID:routineID, exercises:exercises}, this.options)
+    .map((res) => res.json());
+  }
+
 }

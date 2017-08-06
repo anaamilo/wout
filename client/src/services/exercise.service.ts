@@ -18,6 +18,12 @@ export class ExerciseService {
     private http: Http
   ) { this.ENDPOINT = this.BASE + this.API; }
 
+  getList() {
+    console.log("getting list of exercises");
+    return this.http.get(`${this.ENDPOINT}${this.EXERCISE_ROUTE}`)
+      .map((res) => res.json())
+  }
+
   get(query) {
     this.params['name'] = query;
     return this.http.get(`${this.ENDPOINT}${this.EXERCISE_ROUTE}`, {withCredentials:true, params: this.params})

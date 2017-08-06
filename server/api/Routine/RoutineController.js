@@ -24,11 +24,12 @@ module.exports = {
             new Promise((resolve, reject) => {
               e.populate("exerciseID", (err, routine) => {
                 resolve(routine)
-              });   
+              });
             })
             )
         })
         Promise.all(routinesPromises).then(values => {
+          console.log('brought to a2');
           res.status(200).json({
             routine: routine,
             exercises: values
@@ -39,7 +40,7 @@ module.exports = {
   },
   create: function (req, res) {
     var Routine = new RoutineModel({
-      userID : req.body.userID,
+      userID : req.user,
       name : req.body.name,
       exercises: req.body.exercises
    });

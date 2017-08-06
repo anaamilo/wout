@@ -1,118 +1,92 @@
 var ExerciseRoutineModel = require('./ExerciseRoutineModel.js');
-
-/**
- * ExerciseRoutineController.js
- *
- * @description :: Server-side logic for managing ExerciseRoutines.
- */
 module.exports = {
-
-    /**
-     * ExerciseRoutineController.list()
-     */
-    list: function (req, res) {
-        ExerciseRoutineModel.find(function (err, ExerciseRoutines) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when getting ExerciseRoutine.',
-                    error: err
-                });
-            }
-            return res.json(ExerciseRoutines);
+  list: function (req, res) {
+    ExerciseRoutineModel.find(function (err, ExerciseRoutines) {
+      if (err) {
+        return res.status(500).json({
+          message: 'Error when getting ExerciseRoutine.',
+          error: err
         });
-    },
-
-    /**
-     * ExerciseRoutineController.show()
-     */
-    show: function (req, res) {
-        var id = req.params.id;
-        ExerciseRoutineModel.findOne({_id: id}, function (err, ExerciseRoutine) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when getting ExerciseRoutine.',
-                    error: err
-                });
-            }
-            if (!ExerciseRoutine) {
-                return res.status(404).json({
-                    message: 'No such ExerciseRoutine'
-                });
-            }
-            return res.json(ExerciseRoutine);
+      }
+      return res.json(ExerciseRoutines);
+    });
+  },
+  show: function (req, res) {
+    var id = req.params.id;
+    ExerciseRoutineModel.findOne({_id: id}, function (err, ExerciseRoutine) {
+      if (err) {
+        return res.status(500).json({
+          message: 'Error when getting ExerciseRoutine.',
+          error: err
         });
-    },
-
-    /**
-     * ExerciseRoutineController.create()
-     */
-    create: function (req, res) {
-        req.body.exercises.forEach(e => {
-            var ExerciseRoutine = new ExerciseRoutineModel({
-                exerciseID : req.body.exerciseID,
-                routineID : req.body.routineID
-            });
-
-            ExerciseRoutine.save(function (err, ExerciseRoutine) {
-                if (err) {
-                    return res.status(500).json({
-                        message: 'Error when creating ExerciseRoutine',
-                        error: err
-                    });
-                }
-                console.log(ExerciseRoutine);
-                // return res.status(201).json(ExerciseRoutine);
-            });
-        })
-    },
-
-    /**
-     * ExerciseRoutineController.update()
-     */
-    update: function (req, res) {
-        var id = req.params.id;
-        ExerciseRoutineModel.findOne({_id: id}, function (err, ExerciseRoutine) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when getting ExerciseRoutine',
-                    error: err
-                });
-            }
-            if (!ExerciseRoutine) {
-                return res.status(404).json({
-                    message: 'No such ExerciseRoutine'
-                });
-            }
-
-            ExerciseRoutine.exerciseID = req.body.exerciseID ? req.body.exerciseID : ExerciseRoutine.exerciseID;
-			ExerciseRoutine.routineID = req.body.routineID ? req.body.routineID : ExerciseRoutine.routineID;
-			
-            ExerciseRoutine.save(function (err, ExerciseRoutine) {
-                if (err) {
-                    return res.status(500).json({
-                        message: 'Error when updating ExerciseRoutine.',
-                        error: err
-                    });
-                }
-
-                return res.json(ExerciseRoutine);
-            });
+      }
+      if (!ExerciseRoutine) {
+        return res.status(404).json({
+          message: 'No such ExerciseRoutine'
         });
-    },
+      }
+      return res.json(ExerciseRoutine);
+    });
+  },
+  create: function (req, res) {
+    let wadus = req.body.exercises.map(e => {
+      var ExerciseRoutine = new ExerciseRoutineModel({
+        exerciseID : e,
+        routineID : req.body.routineID
+      });
 
-    /**
-     * ExerciseRoutineController.remove()
-     */
-    remove: function (req, res) {
-        var id = req.params.id;
-        ExerciseRoutineModel.findByIdAndRemove(id, function (err, ExerciseRoutine) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when deleting the ExerciseRoutine.',
-                    error: err
-                });
-            }
-            return res.status(204).json();
+      return ExerciseRoutine.save(function (err, ExerciseRoutine) {
+        if (err) {
+          return res.status(500).json({
+            message: 'Error when creating ExerciseRoutine',
+            error: err
+          });
+        }
+        console.log(ExerciseRoutine);
+      });
+    })
+    Promise.all(wadus).then(e => {res.status(201).json('')});
+  },
+  update: function (req, res) {
+    var id = req.params.id;
+    ExerciseRoutineModel.findOne({_id: id}, function (err, ExerciseRoutine) {
+      if (err) {
+        return res.status(500).json({
+          message: 'Error when getting ExerciseRoutine',
+          error: err
         });
-    }
+      }
+      if (!ExerciseRoutine) {
+        return res.status(404).json({
+          message: 'No such ExerciseRoutine'
+        });
+      }
+
+      ExerciseRoutine.exerciseID = req.body.exerciseID ? req.body.exerciseID : ExerciseRoutine.exerciseID;
+      ExerciseRoutine.routineID = req.body.routineID ? req.body.routineID : ExerciseRoutine.routineID;
+
+      ExerciseRoutine.save(function (err, ExerciseRoutine) {
+        if (err) {
+          return res.status(500).json({
+            message: 'Error when updating ExerciseRoutine.',
+            error: err
+          });
+        }
+
+        return res.json(ExerciseRoutine);
+      });
+    });
+  },
+  remove: function (req, res) {
+    var id = req.params.id;
+    ExerciseRoutineModel.findByIdAndRemove(id, function (err, ExerciseRoutine) {
+      if (err) {
+        return res.status(500).json({
+          message: 'Error when deleting the ExerciseRoutine.',
+          error: err
+        });
+      }
+      return res.status(204).json();
+    });
+  }
 };

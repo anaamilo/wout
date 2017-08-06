@@ -6,10 +6,10 @@
     <legend> Routine info </legend>
 
     <label> Name* </label>
-    <input type="text" [(ngModel)]="newRoutine.name" name="name" required />
+    <input type="text" [(ngModel)]="name" name="name" required />
     
   </fieldset>
-  <button (click)="submit()"> submit </button>
+  <button (click)="createRoutine()"> Submit </button>
 </form>
 
 <p> {{ feedback }} </p>

@@ -32,7 +32,7 @@ module.exports = {
 
   create: function (req, res) {
     var Exercise = new ExerciseModel({
-      userID : req.body.userID,
+      userID : req.user,
       name : req.body.name,
       muscleGroup : req.body.muscleGroup,
       series : req.body.series
@@ -62,8 +62,7 @@ module.exports = {
           message: 'No such Exercise'
         });
       }
-
-      Exercise.userID = req.body.userID ? req.body.userID : Exercise.userID;
+      
       Exercise.name = req.body.name ? req.body.name : Exercise.name;
       Exercise.muscleGroup = req.body.muscleGroup ? req.body.muscleGroup : Exercise.muscleGroup;
       Exercise.series = req.body.series ? req.body.series : Exercise.series;

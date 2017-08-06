@@ -8,14 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./routine-form.component.css']
 })
 export class RoutineFormComponent implements OnInit {
-  newRoutine = {
-    name: '',
-    exercises: []
-  };
+  name:string;
   feedback:string;
   constructor(public router:Router, private routineService:RoutineService) { }
 
   ngOnInit() {
+  }
+
+  createRoutine(){
+    this.routineService.create(this.name).subscribe((e:object) => {
+      console.log(e);
+      console.log(this.name + " created");
+      this.router.navigate(['routine', e['_id']]);
+    })
   }
 
 }

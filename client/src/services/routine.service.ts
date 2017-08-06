@@ -8,6 +8,7 @@ export class RoutineService {
 
   ROUTINE_ROUTE = '/routine';
   ENDPOINT: string;
+  options:object = {withCredentials: true};
 
   constructor(
     @Inject('BASE_ENDPOINT') private BASE,
@@ -16,23 +17,33 @@ export class RoutineService {
   ) { this.ENDPOINT = this.BASE + this.API; }
 
   getList() {
-    console.log("getting list");
-    return this.http.get(`${this.ENDPOINT}${this.ROUTINE_ROUTE}`)
+    console.log("getting list of routines");
+    return this.http.get(`${this.ENDPOINT}${this.ROUTINE_ROUTE}`, this.options)
       .map((res) => res.json())
   }
 
   get(id) {
-    return this.http.get(`${this.ENDPOINT}${this.ROUTINE_ROUTE}/${id}`)
+    return this.http.get(`${this.ENDPOINT}${this.ROUTINE_ROUTE}/${id}`, this.options)
     .map((res) => res.json());
   }
 
-  update(id:string, routine) {
-    return this.http.put(`${this.ENDPOINT}${this.ROUTINE_ROUTE}/${id}`, routine)
+  create(name:string) {
+    return this.http.post(`${this.ENDPOINT}${this.ROUTINE_ROUTE}`, {name:name}, this.options)
     .map((res) => res.json())
   }
 
-  // remove(id) {
+  // update(id:string, routine) {
   //   return this.http.put(`${this.ENDPOINT}${this.ROUTINE_ROUTE}/${id}`, routine)
   //   .map((res) => res.json())
   // }
+
+  showExerciseList(id){
+    return this.http.get(`${this.ENDPOINT}${this.ROUTINE_ROUTE}/${id}`, this.options)
+    .map((res) => res.json())
+  }
+
+  remove(id) {
+    return this.http.delete(`${this.ENDPOINT}${this.ROUTINE_ROUTE}/${id}`, this.options)
+    .map((res) => res.json())
+  }
 }
