@@ -1,0 +1,19 @@
+<p>Showing list of {{selectedGroup}} exercises</p>
+<select (change)="selectedGroup = $event.target.value">
+  <option value="Select an option" selected>Select an option</option>
+  <option *ngFor="let muscleGroup of muscleGroups">{{muscleGroup}}</option>
+</select>
+<ul>
+  <li *ngFor="let exercise of exercises | filter:selectedGroup">
+    <input 
+    type="checkbox" 
+    name="{{exercise._id}}" 
+    ng-model="checkedList"
+    (change)="change(checkedList, exercise._id)" 
+    id="{{exercise._id}}"
+    (click)="toggleSelection($event)">
+    <label for="{{exercise._id}}">{{exercise.name}}</label>
+  </li>
+</ul>
+
+<button (click)="addExercises()">Save exercises</button>

@@ -16,6 +16,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { RoutineListComponent } from './routine-list/routine-list.component';
 import { RoutineDetailComponent } from './routine-detail/routine-detail.component';
 import { RoutineFormComponent } from './routine-form/routine-form.component';
+import { ExerciseListComponent } from './exercise-list/exercise-list.component';
+import { FilterPipe } from '../pipes/filter-pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { RoutineFormComponent } from './routine-form/routine-form.component';
     LoginFormComponent,
     RoutineListComponent,
     RoutineDetailComponent,
-    RoutineFormComponent
+    RoutineFormComponent,
+    ExerciseListComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
