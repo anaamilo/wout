@@ -49,8 +49,7 @@ app.use(layouts);
 app.use(session({
   secret: 'angular auth passport secret shh',
   resave: true,
-  saveUninitialized: true,
-  cookie : { httpOnly: true, maxAge: 2419200000 }
+  saveUninitialized: true
 }));
 
 require('./api/Auth/config');

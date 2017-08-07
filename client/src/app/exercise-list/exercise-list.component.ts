@@ -15,7 +15,12 @@ export class ExerciseListComponent implements OnInit {
   checkedList:Array<String> = [];
   selected:Array<String>;
   checked:Boolean;
-  muscleGroups:Array<String> = ['abdominals', 'adductors'];
+  muscleGroups:Array<String> = [
+    'abdominals', 'abductors', 'adductors', 'biceps', 'calves',
+    'chest', 'forearms', 'glutes', 'hamstrings', 'lats',
+    'lower back', 'middle back', 'neck', 'quadriceps', 'shoulders', 
+    'traps', 'triceps'
+  ];
   @Input() routineID:string;
   selectedCategory:string;
   constructor(
