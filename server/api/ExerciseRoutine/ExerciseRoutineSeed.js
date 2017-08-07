@@ -7,11 +7,13 @@ mongoose.connect("mongodb://localhost/workout-app")
     let exerciseRoutines = [
     {
       'exerciseID' : "598210a0e0fe4385b0cfbb72",
-      'routineID' : "598211c43be4b1016e898efc"
+      'routineID' : "598211c43be4b1016e898efc",
+      'series' : []
     },
     {
      'exerciseID' : "598210a0e0fe4385b0cfbb75",
-     'routineID' : "598211c43be4b1016e898efc" 
+     'routineID' : "598211c43be4b1016e898efc",
+     'series' : []
     }
     ];
 

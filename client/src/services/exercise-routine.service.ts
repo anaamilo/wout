@@ -26,4 +26,14 @@ export class ExerciseRoutineService {
     .map((res) => res.json());
   }
 
+  pushSeries(id, series) {
+    return this.http.post(`${this.ENDPOINT}${this.ROUTE}/pushseries`, {id, series}, this.options)
+    .map((res) => res.json());
+  }
+
+  show(id){
+    return this.http.get(`${this.ENDPOINT}${this.ROUTE}/${id}`, this.options)
+    .map((res) => res.json());
+  }
+
 }

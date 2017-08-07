@@ -1,7 +1,8 @@
 var ExerciseRoutineModel = require('./ExerciseRoutineModel.js');
 module.exports = {
   list: function (req, res) {
-    ExerciseRoutineModel.find(function (err, ExerciseRoutines) {
+
+    ExerciseRoutineModel.find({routineID: routineID}, function (err, ExerciseRoutines) {
       if (err) {
         return res.status(500).json({
           message: 'Error when getting ExerciseRoutine.',
@@ -13,19 +14,15 @@ module.exports = {
   },
   show: function (req, res) {
     var id = req.params.id;
-    ExerciseRoutineModel.findOne({_id: id}, function (err, ExerciseRoutine) {
+    ExerciseRoutineModel.find({routineID: id}, function (err, ExerciseRoutines) {
       if (err) {
         return res.status(500).json({
           message: 'Error when getting ExerciseRoutine.',
           error: err
         });
       }
-      if (!ExerciseRoutine) {
-        return res.status(404).json({
-          message: 'No such ExerciseRoutine'
-        });
-      }
-      return res.json(ExerciseRoutine);
+      console.log(ExerciseRoutines)
+      return res.json(ExerciseRoutines);
     });
   },
   create: function (req, res) {
@@ -48,8 +45,9 @@ module.exports = {
     Promise.all(wadus).then(e => {res.status(201).json('')});
   },
   update: function (req, res) {
-    var id = req.params.id;
-    ExerciseRoutineModel.findOne({_id: id}, function (err, ExerciseRoutine) {
+    var id = req.body.id;
+    var series = req.body.series;
+    ExerciseRoutineModel.update({_id: id}, {$push: {series:series}}, function (err, ExerciseRoutine) {
       if (err) {
         return res.status(500).json({
           message: 'Error when getting ExerciseRoutine',
@@ -61,20 +59,7 @@ module.exports = {
           message: 'No such ExerciseRoutine'
         });
       }
-
-      ExerciseRoutine.exerciseID = req.body.exerciseID ? req.body.exerciseID : ExerciseRoutine.exerciseID;
-      ExerciseRoutine.routineID = req.body.routineID ? req.body.routineID : ExerciseRoutine.routineID;
-
-      ExerciseRoutine.save(function (err, ExerciseRoutine) {
-        if (err) {
-          return res.status(500).json({
-            message: 'Error when updating ExerciseRoutine.',
-            error: err
-          });
-        }
-
-        return res.json(ExerciseRoutine);
-      });
+      return res.json(ExerciseRoutine);
     });
   },
   remove: function (req, res) {

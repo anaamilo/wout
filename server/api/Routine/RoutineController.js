@@ -17,7 +17,7 @@ module.exports = {
   show: function (req, res) {
     var id = req.params.id;
     RoutineModel.findOne({_id : id}, (err, routine) => {
-      ExerciseRoutineModel.find({routineID : routine._id}, {exerciseID: 1, _id: 0}, (err, routines) => {
+      ExerciseRoutineModel.find({routineID : routine._id}, {exerciseID: 1}, (err, routines) => {
         routinesPromises = []
         routines.forEach((e) => {
           routinesPromises.push(
@@ -29,7 +29,7 @@ module.exports = {
             )
         })
         Promise.all(routinesPromises).then(values => {
-          console.log('brought to a2');
+          console.log(values);
           res.status(200).json({
             routine: routine,
             exercises: values

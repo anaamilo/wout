@@ -32,11 +32,6 @@ export class RoutineService {
     .map((res) => res.json())
   }
 
-  // update(id:string, routine) {
-  //   return this.http.put(`${this.ENDPOINT}${this.ROUTINE_ROUTE}/${id}`, routine)
-  //   .map((res) => res.json())
-  // }
-
   showExerciseList(id){
     return this.http.get(`${this.ENDPOINT}${this.ROUTINE_ROUTE}/${id}`, this.options)
     .map((res) => res.json())

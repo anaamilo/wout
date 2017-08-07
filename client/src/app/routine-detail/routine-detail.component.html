@@ -9,7 +9,18 @@
 </form>
 <ul>
   <li *ngFor="let exercise of exercises">
-    {{exercise.exerciseID.name}}
+    {{exercise.exerciseID.name}}<br>
+    <form action="" (ngSubmit)="addSeries(exercise._id, myForm)" #myForm="ngForm">
+      <label for="reps">
+        Reps
+        <input type="number" name="reps" [(ngModel)]="reps">
+      </label>
+      <label for="weight">
+        Weight
+        <input type="number" name="weight" [(ngModel)]="weight">
+      </label>
+      <button type="submit">Add series</button>
+    </form>
   </li>
 </ul>
 <button (click)="remove(data.routine._id)">Delete routine</button>

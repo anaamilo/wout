@@ -3,7 +3,8 @@ var Schema   = mongoose.Schema;
 
 var ExerciseRoutineSchema = new Schema({
 	'exerciseID' : { type: Schema.Types.ObjectId, ref: 'Exercise', required: true},
-	'routineID' : { type: Schema.Types.ObjectId, ref: 'Routine', required: true}
+	'routineID' : { type: Schema.Types.ObjectId, ref: 'Routine', required: true},
+  'series' : Array
 });
 
 module.exports = mongoose.model('ExerciseRoutine', ExerciseRoutineSchema);

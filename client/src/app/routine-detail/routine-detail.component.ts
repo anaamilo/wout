@@ -15,6 +15,8 @@ export class RoutineDetailComponent implements OnInit {
   data: Object;
   exercises: Array<object>;
   routineID:string;
+  reps:number;
+  weight:number;
   constructor(
     private routineService:RoutineService,
     private exerciseService:ExerciseService,
@@ -35,8 +37,12 @@ export class RoutineDetailComponent implements OnInit {
 
   ngOnInit() {
     this.routineService.showExerciseList(this.routineID).subscribe(e => {
-        this.exercises = e.exercises;
+      this.exercises = e.exercises;
+      console.log(this.exercises);
     });
+    this.exerciseRoutineService.show(this.routineID).subscribe(e => {
+      console.log(e);
+    })
   }
 
   remove(id){
@@ -45,5 +51,20 @@ export class RoutineDetailComponent implements OnInit {
     });
   }
 
+  addSeries(id, myForm){
+    let series = {
+      reps: this.reps,
+      weight: this.weight
+    }
+    this.exerciseRoutineService.pushSeries(id, series).subscribe(e => {
+      console.log(series);
+    })
+  }
+
+  // removeExercise(){
+  //   this.exerciseRoutineService.delete(this.exerciseID).subscribe(e => {
+  //     console.log(this.exerciseID);
+  //   })
+  // }
   
 }
