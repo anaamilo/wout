@@ -7,8 +7,8 @@
     <app-exercise-list [routineID]="routineID"></app-exercise-list>
   </fieldset>
 </form>
-<ul>
-  <li *ngFor="let exercise of exercises">
+<div>
+  <div *ngFor="let exercise of exercises">
     {{exercise.exerciseID.name}}<br>
     <form action="" (ngSubmit)="addSeries(exercise._id, myForm)" #myForm="ngForm">
       <label for="reps">
@@ -21,7 +21,17 @@
       </label>
       <button type="submit">Add series</button>
     </form>
-  </li>
-</ul>
+    <div *ngFor="let exerciseID of series">
+      <div *ngIf="exercise.exerciseID._id == exerciseID.exerciseID">
+        <ul>
+            <div *ngFor="let serie of exerciseID.series">
+              Reps: {{serie.reps}}
+              Weight: {{serie.weight}}
+            </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 <button (click)="remove(data.routine._id)">Delete routine</button>
 <a [routerLink]="['']"> Back to routine list </a>

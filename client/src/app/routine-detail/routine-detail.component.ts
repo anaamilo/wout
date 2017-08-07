@@ -17,6 +17,7 @@ export class RoutineDetailComponent implements OnInit {
   routineID:string;
   reps:number;
   weight:number;
+  series: Array<object>;
   constructor(
     private routineService:RoutineService,
     private exerciseService:ExerciseService,
@@ -38,10 +39,13 @@ export class RoutineDetailComponent implements OnInit {
   ngOnInit() {
     this.routineService.showExerciseList(this.routineID).subscribe(e => {
       this.exercises = e.exercises;
-      console.log(this.exercises);
     });
+    this.loadSeries();
+  }
+
+  loadSeries(){
     this.exerciseRoutineService.show(this.routineID).subscribe(e => {
-      console.log(e);
+      this.series = e;
     })
   }
 
@@ -58,7 +62,9 @@ export class RoutineDetailComponent implements OnInit {
     }
     this.exerciseRoutineService.pushSeries(id, series).subscribe(e => {
       console.log(series);
+      this.loadSeries();
     })
+
   }
 
   // removeExercise(){
