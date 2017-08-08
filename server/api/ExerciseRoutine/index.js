@@ -7,5 +7,6 @@ router.get('/:id', ExerciseRoutineController.show);
 router.post('/', ExerciseRoutineController.create);
 router.delete('/:id', ExerciseRoutineController.remove);
 router.post('/pushseries', ExerciseRoutineController.update);
+router.put('/removeseries', ExerciseRoutineController.removeSeries);
 
 module.exports = router;

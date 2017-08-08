@@ -24,9 +24,10 @@
     <div *ngFor="let exerciseID of series">
       <div *ngIf="exercise.exerciseID._id == exerciseID.exerciseID">
         <ul>
-            <div *ngFor="let serie of exerciseID.series">
+            <div *ngFor="let serie of exerciseID.series; let i = index" [attr.data-index]="i">
               Reps: {{serie.reps}}
               Weight: {{serie.weight}}
+              <button (click)="removeSeries($event, exerciseID._id, exerciseID.exerciseID)" value="{{i}}">X</button>
             </div>
         </ul>
       </div>

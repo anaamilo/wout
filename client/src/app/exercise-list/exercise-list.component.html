@@ -1,6 +1,6 @@
-<p>Showing list of {{selectedGroup}} exercises</p>
+<!-- <p>{{selectedGroup}}</p> -->
 <select (change)="selectedGroup = $event.target.value">
-  <option value="Select an option" selected>Select an option</option>
+  <option selected disabled>Select an option</option>
   <option *ngFor="let muscleGroup of muscleGroups">{{muscleGroup}}</option>
 </select>
 <ul>

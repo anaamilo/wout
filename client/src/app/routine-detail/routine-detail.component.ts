@@ -55,6 +55,17 @@ export class RoutineDetailComponent implements OnInit {
     });
   }
 
+  removeSeries(e, routineID, exerciseid){
+    let index = e.target.value;
+    var current = this.series.filter(e => 
+      e['exerciseID'] == exerciseid
+    )
+    current[0]['series'].splice(index, 1);
+    this.exerciseRoutineService.removeSeries(routineID, current[0]['series']).subscribe(e => {
+      console.log(e);
+    })
+  }
+
   addSeries(id, myForm){
     let series = {
       reps: this.reps,
@@ -64,13 +75,6 @@ export class RoutineDetailComponent implements OnInit {
       console.log(series);
       this.loadSeries();
     })
-
   }
-
-  // removeExercise(){
-  //   this.exerciseRoutineService.delete(this.exerciseID).subscribe(e => {
-  //     console.log(this.exerciseID);
-  //   })
-  // }
   
 }

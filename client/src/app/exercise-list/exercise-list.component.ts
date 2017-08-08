@@ -51,7 +51,7 @@ export class ExerciseListComponent implements OnInit {
   addExercises(){
     this.exerciseRoutineService.update(this.routineID, this.checkedList).subscribe((e:Object) => {
       console.log(this.checkedList);
-      this.router.navigate(['']);
+      // this.router.navigate(['']);
     })
   }
 

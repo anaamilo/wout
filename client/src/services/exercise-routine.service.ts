@@ -36,4 +36,10 @@ export class ExerciseRoutineService {
     .map((res) => res.json());
   }
 
+  removeSeries(relationID, series) {
+    console.log(relationID, series);
+    return this.http.put(`${this.ENDPOINT}${this.ROUTE}/removeseries`, {relationID:relationID, series:series}, this.options)
+    .map((res) => res.json());
+  }
+
 }

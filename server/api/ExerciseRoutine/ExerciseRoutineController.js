@@ -1,7 +1,6 @@
 var ExerciseRoutineModel = require('./ExerciseRoutineModel.js');
 module.exports = {
   list: function (req, res) {
-
     ExerciseRoutineModel.find({routineID: routineID}, function (err, ExerciseRoutines) {
       if (err) {
         return res.status(500).json({
@@ -72,6 +71,19 @@ module.exports = {
         });
       }
       return res.status(204).json();
+    });
+  },
+  removeSeries: function (req, res) {
+    console.log(req.body.relationID, req.body.series)
+    ExerciseRoutineModel.update({_id: req.body.relationID}, {$set: {series: req.body.series}}, function (err, response) {
+      if (err) {
+        return res.status(500).json({
+          message: 'Error when deleting the ExerciseRoutine.',
+          error: err
+        });
+      }
+      console.log(response)
+      return res.status(204).json(response);
     });
   }
 };
