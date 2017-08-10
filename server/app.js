@@ -57,7 +57,15 @@ require('./api/Auth/config');
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./routes')(app);
+// require('./routes')(app);
+app.use('/api/exercise', require('./api/Exercise/'));
+app.use('/api/routine', require('./api/Routine/'));
+app.use('/api/', require('./api/Auth/'));
+app.use('/api/exerciseroutine', require('./api/ExerciseRoutine/'));
+
+app.use(function(req, res) {
+  res.sendFile(__dirname + '/public/index.html');
+});
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');

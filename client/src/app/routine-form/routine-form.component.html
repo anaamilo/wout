@@ -1,15 +1,14 @@
-<h1> Add a new routine </h1>
-<a [routerLink]="['']"> Back to routine list </a>
-
-<form>
-  <fieldset>
-    <legend> Routine info </legend>
-
-    <label> Name* </label>
-    <input type="text" [(ngModel)]="name" name="name" required />
-    
-  </fieldset>
-  <button (click)="createRoutine()"> Submit </button>
-</form>
-
-<p> {{ feedback }} </p>
+<div class="wrapper routine-page-create">
+  <h1> Add a new routine </h1>
+  <a [routerLink]="['']" class="ui-icon ui-icon-menu"></a>
+  <form>
+    <fieldset>
+      <label> Name </label>
+      <input type="text" [(ngModel)]="name" name="name" required autocomplete="off"/>
+    </fieldset>
+    <div class="actions">
+      <button class="btn" (click)="createRoutine()"> Submit </button>
+    </div>
+  </form>
+  <p> {{ feedback }} </p>
+</div>

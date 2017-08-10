@@ -11,15 +11,8 @@ export class LoginFormComponent implements OnInit {
   username:string;
   password:string;
   constructor(private session: SessionService) { }
+  
   ngOnInit() {
-  }
-
-  login() {
-    this.session.login(this.username,this.password)
-      .subscribe(
-        (user) => console.log(user),
-        (err) => this.error = err
-      );
   }
 
   signup() {

@@ -1,1 +1,476 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Kristi");
+* {
+  box-sizing: border-box;
+}
+
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/**
+ * http://applemusic.tumblr.com/
+ * https://jsfiddle.net/xq56dmrh/
+ */
+/** Ultra Light */
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 100;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff");
+}
+
+/** Thin */
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 200;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff");
+}
+
+/** Regular */
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 400;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+}
+
+/** Medium */
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 500;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff");
+}
+
+/** Semi Bold */
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 600;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff");
+}
+
+/** Bold */
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 700;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff");
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "San Francisco", sans-serif;
+}
+
+.wrapper {
+  width: 1400px;
+  max-width: 100%;
+  margin: 0 auto;
+  height: 100vh;
+  position: relative;
+}
+
+.wrapper.login-page {
+  background: linear-gradient(190deg, #FFC279 0%, #807FFE 80%);
+}
+
+.wrapper.profile-page {
+  background: linear-gradient(190deg, #807FFE 0%, #68D9D1 70%);
+}
+
+.wrapper.profile-page .profile-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  color: #FFFFFF;
+}
+
+.wrapper.profile-page .profile-menu-tag:before, .wrapper.profile-page .profile-menu-tag:after {
+  content: "";
+  height: 3px;
+  background-color: #FFFFFF;
+  position: absolute;
+  left: 30px;
+}
+
+.wrapper.profile-page .profile-menu-tag:before {
+  width: 30px;
+  top: 30px;
+}
+
+.wrapper.profile-page .profile-menu-tag:after {
+  width: 20px;
+  top: 40px;
+}
+
+.wrapper.profile-page .profile-menu-edit {
+  position: absolute;
+  right: 30px;
+  top: 25px;
+  width: 30px;
+  height: 30px;
+}
+
+.wrapper.profile-page .profile-header {
+  background-color: rgba(128, 127, 254, 0.15);
+  width: 120%;
+  height: 250px;
+  margin: 0 auto;
+  margin-left: -30px;
+  border-radius: 0 0 50% 50%;
+  border-bottom: 10px solid rgba(128, 127, 254, 0.1);
+}
+
+.wrapper.profile-page .profile-header .content img {
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
+  width: 100px;
+  top: 70px;
+}
+
+.wrapper.profile-page .profile-header .content .user-name {
+  margin: 180px 30px 0;
+  color: #FFFFFF;
+  display: inline-block;
+  text-align: center;
+  width: 100vw;
+  text-transform: uppercase;
+  font-family: "San Francisco", sans-serif;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+.wrapper.profile-page .profile-header .content .user-name .content {
+  max-width: 150px;
+}
+
+.wrapper.profile-page .profile-header .content .user-name .content .special {
+  font-family: "Kristi", cursive;
+  font-size: 25px;
+  letter-spacing: 3px;
+  text-transform: lowercase;
+}
+
+.wrapper.routine-page {
+  background: linear-gradient(190deg, #FFC279 0%, #807FFE 80%);
+}
+
+.wrapper.routine-page-create {
+  background: linear-gradient(190deg, #FFFFFF 0%, #807FFE 80%);
+}
+
+.routine-list {
+  display: block;
+  margin: 25px;
+}
+
+.routine-list-item {
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  margin-top: 16px;
+  border: 3px solid transparent;
+}
+
+.routine-list-item:hover {
+  border-color: #FFFFFF;
+  background-color: transparent;
+}
+
+.routine-list-item:hover a {
+  color: #FFFFFF;
+}
+
+.routine-list-item a {
+  display: block;
+  text-decoration: none;
+  font-family: "San Francisco", sans-serif;
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: #7B7979;
+  padding: 20px 25px;
+}
+
+.ui-icon {
+  width: 10px;
+  height: 10px;
+}
+
+.ui-icon-search {
+  border: 3px solid white;
+  border-radius: 50%;
+  transform: scale(0.65) rotate(-45deg);
+}
+
+.ui-icon-search:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  width: 3px;
+  height: 75%;
+  background-color: white;
+  left: calc(50% - 1px);
+}
+
+.ui-icon-menu {
+  width: 15px;
+  height: 3px;
+  background-color: #fff;
+  position: relative;
+}
+
+.ui-icon-menu, .ui-icon-menu:before, .ui-icon-menu:after {
+  transition: transform .6s ease;
+}
+
+.ui-icon-menu:before, .ui-icon-menu:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  height: 100%;
+  width: 120%;
+}
+
+.ui-icon-menu:before {
+  transform: translateY(-10px);
+  transform-origin: bottom left;
+}
+
+.ui-icon-menu:after {
+  transform: translateY(-10px);
+  transform-origin: top left;
+}
+
+.add-routine {
+  background-color: #FFFFFF;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  font-size: 30px;
+}
+
+.main-wrapper {
+  height: 100vh;
+  position: relative;
+}
+
+.actions {
+  position: absolute;
+  bottom: 60px;
+  left: 50px;
+  right: 50px;
+}
+
+.main-icon {
+  position: absolute;
+  top: 200px;
+  width: 104px;
+  height: 84px;
+  display: block;
+  margin: 0 auto;
+  left: 50%;
+  margin-left: -52px;
+}
+
+.unicorn {
+  background: linear-gradient(190deg, #FF6771 0%, #FFC279 80%);
+}
+
+.fit, .actions .btn:hover {
+  font-family: "Kristi", cursive;
+  letter-spacing: 3px;
+}
+
+.actions {
+  padding: 20px 0;
+}
+
+.actions .btn {
+  text-transform: uppercase;
+  padding: 20px 40px;
+  border: none;
+  font-size: 16px;
+  line-height: 25px;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  background-color: transparent;
+  border: 3px solid #FFFFFF;
+  color: #FFFFFF;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.actions .btn + .btn {
+  margin-top: 10px;
+}
+
+.actions .btn:hover {
+  font-size: 30px;
+  text-transform: lowercase;
+}
+
+form {
+  display: block;
+  margin: 0 auto;
+  padding: 100px 80px;
+}
+
+form input {
+  width: 100%;
+}
+
+label {
+  font-size: 15px;
+  display: block;
+  margin: 30px 0 10px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+input {
+  background-color: transparent;
+  border: 0;
+  font-family: "Kristi", cursive;
+  border-bottom: 3px solid #FFFFFF;
+  color: #FFFFFF;
+  font-size: 40px;
+  padding: 5px 10px;
+}
+ 
+
+ /*# sourceMappingURL= styles.css.map */

@@ -1,0 +1,130 @@
+//Global vars used in common pages
+$ease-out-expo: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+$ease-in-expo: cubic-bezier(0.950, 0.050, 0.795, 0.035);
+$ease-in-out-sine: cubic-bezier(0.445, 0.050, 0.550, 0.950);
+$ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+$ease-in-out-expo: cubic-bezier(1.000, 0.000, 0.000, 1.000);
+$easing: $ease-out-expo;
+
+//Global colors
+$white: #FFFFFF;
+$black: #000000;
+
+$canvasColor: #FAFAFA;
+
+//Application colors
+$grayLighter: #EAEAEA;
+$grayLight: #ADADAD;
+$gray: #717171;
+$grayDarker: #7B7979;
+
+$aqua: #52F6B2;
+$montecarlo: #68D9D1;
+$blue: #6DBFD7;
+$purple: #807FFE;
+$lavender: #C5A5FB;
+$grapefruit: #FF6771;
+$mango: #FFC279;
+
+$slow: 2s;
+$fast: 1s;
+$faster: 0.5s;
+$fastest: 0.3s;
+
+//Message colors
+$errorColor: #FF524F;
+$warningColor: #FFAB3B;
+
+//font-weight definitions
+$light-weight: 300;
+$normal-weight: 400;
+$medium-weight: 500;
+$demibold-weight: 600;
+
+//font-family definitions
+$mainFont: 'San Francisco', sans-serif;
+$secondaryFont: 'Kristi', cursive;
+// $iconFont: "icons";
+
+// usage: @include clearfix;
+@mixin clearfix{
+  &:after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+%clearfix{
+  @include clearfix;
+}
+
+// rgba polyfill ie8, usage @include rgba(red, 0.6)
+@mixin rgba($color, $alpha) {
+  background-color: $color;
+  background-color: rgba($color, $alpha);
+}
+
+// opacity polyfill ie8, usage @include opacity(0.6)
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+// Font-size rem calculator, usage @include font-size(14px)
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+$keyframe_prefix:"";
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    $keyframe_prefix: -webkit-;
+    @content; 
+  }
+  @-moz-keyframes #{$name} {
+    $keyframe_prefix: -moz-;
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    $keyframe_prefix: -ms-;
+    @content;
+  }
+  @keyframes #{$name} {
+    $keyframe_prefix: "";
+    @content;
+  }
+}
+
+@mixin bp($point) {
+  $big_desktop-viewport: 1200;
+  $desktop-viewport: 990;
+  $tablet-viewport: 768;
+
+  $desktop-only: "(min-width: "+$desktop-viewport+"px)";
+  $tablet-only: "(min-width: "+$tablet-viewport+"px) and (max-width: "+(($desktop-viewport)-1)+"px)";
+  $small_desktop: "(max-width: "+(($big_desktop-viewport)-1)+"px)";
+  $tablet: "(max-width: "+(($desktop-viewport)-1)+"px)";
+  $mobile: "(max-width: "+(($tablet-viewport)-1)+"px)";
+
+  @if $point == desktop-only {
+    @media only screen and #{$desktop-only} { @content; }
+  } @else if $point == tablet-only{
+    @media only screen and #{$tablet-only} { @content; }
+  } @else if $point == small_desktop{
+    @media only screen and #{$small_desktop} { @content; }
+  } @else if $point == tablet{
+    @media only screen and #{$tablet} { @content; }
+  } @else if $point == mobile{
+    @media only screen and #{$mobile} { @content; }
+  }
+}
+
+*:focus {
+  outline: none;
+}

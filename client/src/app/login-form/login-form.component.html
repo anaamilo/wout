@@ -1,13 +1,7 @@
-<h1>Angular Workout App</h1>
-<form>
-  <h2> Login or sign up here</h2>
-  <label> Username </label>
-  <input type="text" [(ngModel)]="username" name="username"/>
-  <br>
-  <label> Password </label>
-  <input type="password" [(ngModel)]="password" name="password"/>
-
-  <button (click)="login()"> login </button>
-  <button (click)="signup()"> signup </button>
-</form>
-<p class="error"> {{ error }} </p>
+<div class="main-wrapper unicorn">
+  <img src="assets/images/fuel-icon.png" class="main-icon" alt="">
+  <div class="actions">
+  <button class="btn primary" [routerLink]="['login', 'signin']"> Log in </button>
+  <button class="btn" [routerLink]="['login', 'signup']"> Sign up </button>
+  </div>
+</div>

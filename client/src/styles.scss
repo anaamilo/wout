@@ -1,0 +1,280 @@
+@import 'reset';
+@import 'fonts';
+@import 'utils';
+
+@mixin gradient($dir, $f_col, $f_per, $t_col, $t_per) {
+  background: linear-gradient($dir, $f_col $f_per, $t_col $t_per);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $mainFont;
+}
+
+.wrapper {
+  width: 1400px;
+  max-width: 100%;
+  margin: 0 auto;
+  height: 100vh;
+  position: relative;
+  &.login-page {
+    @include gradient(190deg, $mango, 0%, $purple, 80%);
+  }
+  &.profile-page {
+    @include gradient(190deg, $purple, 0%, $montecarlo, 70%);
+    .profile-menu {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      color: $white;
+      &-tag {
+        &:before,&:after {
+          content: "";
+          height: 3px;
+          background-color: $white;
+          position: absolute;
+          left: 30px;
+        }
+        &:before {
+          width: 30px;
+          top: 30px;
+        }
+        &:after {
+          width: 20px;
+          top: 40px;
+        }
+      }
+      &-edit {
+        position: absolute;
+        right: 30px;
+        top: 25px;
+        width: 30px;
+        height: 30px;
+        // background-color: $white;
+        // border-radius: 50px;
+      }
+    }
+    .profile-header {
+      background-color: rgba($purple, 0.15);
+      width: 120%;
+      height: 250px;
+      margin: 0 auto;
+      margin-left: -30px;
+      border-radius: 0 0 50% 50%;
+      border-bottom: 10px solid rgba(128, 127, 254, 0.1);
+      .content {
+        img {
+          position: absolute;
+          left: 50%;
+          margin-left: -50px;
+          width: 100px;
+          top: 70px;
+        }
+        .user-name {
+          margin: 180px 30px 0;
+          color: #FFFFFF;
+          display: inline-block;
+          text-align: center;
+          width: 100vw;
+          text-transform: uppercase;
+          font-family: $mainFont;
+          letter-spacing: 2px;
+          font-size: 14px;
+          .content {
+            max-width: 150px;
+            .special {
+              font-family: $secondaryFont;
+              font-size: 25px;
+              letter-spacing: 3px;
+              text-transform: lowercase;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.routine-page {
+    @include gradient(190deg, $mango, 0%, $purple, 80%);
+  }
+  &.routine-page-create {
+    @include gradient(190deg, $white, 0%, $purple, 80%);
+  }
+}
+
+.routine-list {
+  display: block;
+  margin: 25px;
+  &-item {
+    background-color: $white;
+    border-radius: 4px;
+    margin-top: 16px;
+    border: 3px solid transparent;
+    &:hover {
+      border-color: $white;
+      background-color: transparent;
+      a {
+        color: $white;
+      }
+    }
+    a {
+      display: block;
+      text-decoration: none;
+      font-family: $mainFont;
+      font-size: 16px;
+      letter-spacing: 3px;
+      color: $grayDarker;
+      padding: 20px 25px;
+    }
+  }
+}
+
+.ui-icon {
+  width: 10px;
+  height: 10px;
+
+  &-search {
+    &:after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      width: 3px;
+      height: 75%;
+      background-color: white;
+      left: calc(50% - 1px);
+    }
+    border: 3px solid white;
+    border-radius: 50%;
+    transform: scale(0.65) rotate(-45deg);
+  }
+
+  &-menu {
+    width: 15px;
+    height: 3px;
+    background-color: #fff;
+    position: relative;
+    
+    &, &:before, &:after {
+      transition: transform .6s ease;
+    }
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: #fff;
+      height: 100%;
+      width: 120%;
+    }
+    
+    &:before {
+      transform: translateY(-10px);
+      transform-origin: bottom left;
+    }
+
+    &:after {
+      transform: translateY(-10px);
+      transform-origin: top left;
+    }
+
+  }
+}
+
+.add-routine {
+  background-color: $white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  font-size: 30px;
+}
+
+.main-wrapper {
+  height: 100vh;
+  position: relative;
+}
+
+.actions {
+  position: absolute;
+  bottom: 60px;
+  left: 50px;
+  right: 50px;
+}
+
+.main-icon {
+  position: absolute;
+  top: 200px;
+  width: 104px;
+  height: 84px;
+  display: block;
+  margin: 0 auto;
+  left: 50%;
+  margin-left: -52px;
+}
+
+.unicorn {
+  @include gradient(190deg, $grapefruit, 0%, $mango, 80%);
+}
+
+.fit {
+  font-family: $secondaryFont;
+  letter-spacing: 3px;
+}
+
+.actions {
+  padding: 20px 0;
+  .btn {
+    text-transform: uppercase;
+    padding: 20px 40px;
+    border: none;
+    font-size: 16px;
+    line-height: 25px;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    background-color: transparent;
+    border: 3px solid $white;
+    color: $white;
+    font-weight: bold;
+    cursor: pointer;
+    + .btn {
+      margin-top: 10px;
+    }
+    &:hover {
+      @extend .fit;
+      font-size: 30px;
+      text-transform: lowercase;
+    }
+  }
+}
+
+form {
+  display: block;
+  margin: 0 auto;
+  padding: 100px 80px;
+  input {
+    width: 100%;
+  }
+}
+
+
+label {
+  font-size: 15px;
+  display: block;
+  margin: 30px 0 10px;
+  text-transform: uppercase;
+  color: $white;
+}
+
+input {
+  background-color: transparent;
+  border: 0;
+  font-family: $secondaryFont;
+  border-bottom: 3px solid $white;
+  color: $white;
+  font-size: 40px;
+  padding: 5px 10px;
+}

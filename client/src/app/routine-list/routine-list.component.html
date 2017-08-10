@@ -1,9 +1,25 @@
-<h3> Routine List </h3>
-<button [routerLink]="['routine', 'add']"> Add new routine </button>
-<div>
-  <div *ngFor="let routine of routines">
-    <h3>
-      <a [routerLink]="['routine', routine._id]"> {{ routine.name }} </a>
-    </h3>
+<div class="wrapper profile-page">
+  <div class="profile-menu">
+    <div class="profile-menu-tag"></div>
+    <div class="profile-menu-edit"></div>
+  </div>
+  <div class="profile-header">
+    <div class="content">
+        <img src="assets/images/selfie.png" alt="">
+      <span class="user-name">
+        <span class="content">
+          Hey! Ready to<br><span class="special"> kill</span> it?</span>
+        </span>
+    </div>
+  </div>
+  <button [routerLink]="['routine', 'add']" class="add-routine">+</button>
+  <div>
+    <ul class="routine-list">
+      <li class="routine-list-item" *ngFor="let routine of routines">
+        <a [routerLink]="['routine', routine._id]"> 
+          {{ routine.name | uppercase }}
+        </a>
+      </li>
+    </ul>
   </div>
 </div>
