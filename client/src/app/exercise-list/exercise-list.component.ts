@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ExerciseService } from '../../services/exercise.service';
+import { RoutineService } from '../../services/routine.service';
 import { ExerciseRoutineService } from '../../services/exercise-routine.service';
 import { Observable } from 'rxjs';
 import { Pipe } from '@angular/core';
@@ -12,9 +13,12 @@ import { Router } from '@angular/router';
 })
 export class ExerciseListComponent implements OnInit {
   exercises:Array<Object>;
+  exerciseList:Array<Object>;
   checkedList:Array<String> = [];
   selected:Array<String>;
   checked:Boolean;
+  selection:String = 'abdominals';
+  selectedGroup = "abdominals";
   muscleGroups:Array<String> = [
     'abdominals', 'abductors', 'adductors', 'biceps', 'calves',
     'chest', 'forearms', 'glutes', 'hamstrings', 'lats',
@@ -25,6 +29,7 @@ export class ExerciseListComponent implements OnInit {
   selectedCategory:string;
   constructor(
     private exerciseService:ExerciseService,
+    private routineService:RoutineService,
     private exerciseRoutineService:ExerciseRoutineService,
     private router:Router
   ) { }
@@ -51,8 +56,16 @@ export class ExerciseListComponent implements OnInit {
   addExercises(){
     this.exerciseRoutineService.update(this.routineID, this.checkedList).subscribe((e:Object) => {
       console.log(this.checkedList);
-      // this.router.navigate(['']);
+      this.loadExercises();
     })
+  }
+
+  loadExercises(){
+    this.routineService.showExerciseList(this.routineID).subscribe(e => {
+      console.log(this.routineID);
+      this.exerciseList = e.exercises;
+      console.log(this.exerciseList);
+    });
   }
 
 }

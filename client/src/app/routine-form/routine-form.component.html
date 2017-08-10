@@ -1,9 +1,10 @@
 <div class="wrapper routine-page-create">
-  <h1> Add a new routine </h1>
-  <a [routerLink]="['']" class="ui-icon ui-icon-menu"></a>
+  <div class="back-link">
+    <a [routerLink]="['']"></a>
+  </div>
   <form>
     <fieldset>
-      <label> Name </label>
+      <label> Name your routine </label>
       <input type="text" [(ngModel)]="name" name="name" required autocomplete="off"/>
     </fieldset>
     <div class="actions">

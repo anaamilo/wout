@@ -37,10 +37,14 @@ export class RoutineDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadExercises();
+    this.loadSeries();
+  }
+
+  loadExercises(){
     this.routineService.showExerciseList(this.routineID).subscribe(e => {
       this.exercises = e.exercises;
     });
-    this.loadSeries();
   }
 
   loadSeries(){

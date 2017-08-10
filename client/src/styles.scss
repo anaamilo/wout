@@ -13,38 +13,38 @@ body {
 }
 
 .wrapper {
-  width: 1400px;
+  max-width: 1400px;
   max-width: 100%;
   margin: 0 auto;
-  height: 100vh;
   position: relative;
+  overflow: hidden;
   &.login-page {
     @include gradient(190deg, $mango, 0%, $purple, 80%);
   }
   &.profile-page {
     @include gradient(190deg, $purple, 0%, $montecarlo, 70%);
     .profile-menu {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 50px;
-      color: $white;
       &-tag {
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        left: 15px;
+        width: 50px;
+        height: 50px;
         &:before,&:after {
           content: "";
           height: 3px;
           background-color: $white;
           position: absolute;
-          left: 30px;
+          left: 10px;
         }
         &:before {
           width: 30px;
-          top: 30px;
+          top: 20px;
         }
         &:after {
           width: 20px;
-          top: 40px;
+          top: 30px;
         }
       }
       &-edit {
@@ -72,6 +72,8 @@ body {
           margin-left: -50px;
           width: 100px;
           top: 70px;
+          border-radius: 50%;
+          border: 5px solid white;
         }
         .user-name {
           margin: 180px 30px 0;
@@ -106,18 +108,13 @@ body {
 
 .routine-list {
   display: block;
-  margin: 25px;
+  padding: 25px 25px 50px;
   &-item {
-    background-color: $white;
-    border-radius: 4px;
-    margin-top: 16px;
-    border: 3px solid transparent;
+    border-radius: 40px;
+    margin-top: 15px;
+    border: 3px solid $white;
     &:hover {
-      border-color: $white;
-      background-color: transparent;
-      a {
-        color: $white;
-      }
+      @include gradient(90deg, $montecarlo, 0%, $blue, 50%);
     }
     a {
       display: block;
@@ -125,69 +122,49 @@ body {
       font-family: $mainFont;
       font-size: 16px;
       letter-spacing: 3px;
-      color: $grayDarker;
-      padding: 20px 25px;
+      color: $white;
+      padding: 10px 15px;
     }
   }
 }
 
+.back-link {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  a {
+    background-image: url('./assets/images/arrow-back.svg');
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-size: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+}
+
 .ui-icon {
-  width: 10px;
-  height: 10px;
 
-  &-search {
-    &:after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      width: 3px;
-      height: 75%;
-      background-color: white;
-      left: calc(50% - 1px);
-    }
-    border: 3px solid white;
-    border-radius: 50%;
-    transform: scale(0.65) rotate(-45deg);
-  }
+  // &-search {
+  //   &:after {
+  //     content: '';
+  //     position: absolute;
+  //     top: 100%;
+  //     width: 3px;
+  //     height: 75%;
+  //     background-color: white;
+  //     left: calc(50% - 1px);
+  //   }
+  //   border: 3px solid white;
+  //   border-radius: 50%;
+  //   transform: scale(0.65) rotate(-45deg);
+  // }
 
-  &-menu {
-    width: 15px;
-    height: 3px;
-    background-color: #fff;
-    position: relative;
-    
-    &, &:before, &:after {
-      transition: transform .6s ease;
-    }
-
-    &:before, &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-color: #fff;
-      height: 100%;
-      width: 120%;
-    }
-    
-    &:before {
-      transform: translateY(-10px);
-      transform-origin: bottom left;
-    }
-
-    &:after {
-      transform: translateY(-10px);
-      transform-origin: top left;
-    }
-
-  }
 }
 
 .add-routine {
   background-color: $white;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
   border: none;
   font-size: 30px;
 }
@@ -198,7 +175,7 @@ body {
 }
 
 .actions {
-  position: absolute;
+  padding: 50px;
   bottom: 60px;
   left: 50px;
   right: 50px;
@@ -240,6 +217,26 @@ body {
     color: $white;
     font-weight: bold;
     cursor: pointer;
+     &.logout {
+      background-color: $grapefruit;
+      border: 3px solid transparent;
+      color: $white;
+      &:hover {
+        border: 3px solid $grapefruit;
+        background-color: $white;
+        color: $grapefruit;
+      }
+    }
+    &.create-routine {
+      background-color: $purple;
+      border: 3px solid transparent;
+      color: $white;
+      &:hover {
+        border: 3px solid $purple;
+        background-color: $white;
+        color: $purple;
+      }
+    }
     + .btn {
       margin-top: 10px;
     }
@@ -254,12 +251,20 @@ body {
 form {
   display: block;
   margin: 0 auto;
-  padding: 100px 80px;
+  padding: 100px 60px 0;
   input {
     width: 100%;
   }
 }
 
+.routine-name {
+  position: absolute;
+  right: 50px;
+  top: 50px;
+  color: $white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
 
 label {
   font-size: 15px;
@@ -278,3 +283,95 @@ input {
   font-size: 40px;
   padding: 5px 10px;
 }
+
+.exercise-list {
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 18px;
+    right: 15px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 5px 0 5px;
+    border-color: $white transparent transparent transparent;
+  }
+}
+
+select {
+  border: 3px solid #FFFFFF;
+  -webkit-appearance: none;
+  padding: 10px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: white;
+  width: 100%;
+  position: relative;
+}
+
+.card {
+  // box-shadow: 0 10px 20px 0 rgba(0, 0, 0, .5);
+  margin-top: 30px;
+  max-height: 200px;
+  margin-left: -60px;
+  margin-right: -60px;
+  overflow-y: scroll;
+  background-color: $white;
+  border-top: 3px solid $white;
+  transition: all 1s ease-in-out;
+}
+
+.exercise-listed-item {
+  &:hover {
+    border: 2px solid orangered;
+  }
+  label, input {
+    display: inline-block;
+    width: auto;
+    color: $grayDarker;
+  }
+}
+
+.selected-exercises {
+  padding: 30px 60px;
+  li {
+    text-transform: uppercase;
+    color: $white;
+    line-height: 23px;
+    + li {
+      margin-top: 10px;
+    }
+  }
+}
+
+.profile-menu-content {
+  width: 0px;
+  background-color: $white;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  transition: all $faster $easing;
+  .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: $grayDarker;
+    cursor: pointer;
+  }
+  .actions {
+    display: none;
+    transition: all $slow $easing;
+    transition-delay: $slow;
+  }
+  &.active {
+    width: 100%;
+    .actions {
+      display: block;
+    }
+  }
+}
+

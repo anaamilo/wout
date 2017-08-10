@@ -1,39 +1,16 @@
-<div class="routine-page wrapper"></div>
-<div *ngIf="(data)">
-  <h1> {{data.routine.name}} </h1>
-</div>
-<h2> Add exercises </h2>
+<div class="routine-page wrapper">
 <form>
+  <div class="routine-name" *ngIf="(data)"><h1> {{data.routine.name}} </h1></div>
   <fieldset>
     <app-exercise-list [routineID]="routineID"></app-exercise-list>
   </fieldset>
 </form>
 <div>
-  <div *ngFor="let exercise of exercises">
-    {{exercise.exerciseID.name}}<br>
-    <form action="" (ngSubmit)="addSeries(exercise._id, myForm)" #myForm="ngForm">
-      <label for="reps">
-        Reps
-        <input type="number" name="reps" [(ngModel)]="reps">
-      </label>
-      <label for="weight">
-        Weight
-        <input type="number" name="weight" [(ngModel)]="weight">
-      </label>
-      <button type="submit">Add series</button>
-    </form>
-    <div *ngFor="let exerciseID of series">
-      <div *ngIf="exercise.exerciseID._id == exerciseID.exerciseID">
-        <ul>
-            <div *ngFor="let serie of exerciseID.series; let i = index" [attr.data-index]="i">
-              Reps: {{serie.reps}}
-              Weight: {{serie.weight}}
-              <button (click)="removeSeries($event, exerciseID._id, exerciseID.exerciseID)" value="{{i}}">X</button>
-            </div>
-        </ul>
-      </div>
-    </div>
-  </div>
+<ul class="selected-exercises">
+  <li *ngFor="let exercise of exercises">{{exercise.exerciseID.name}}</li>
+</ul>
 </div>
-<button (click)="remove(data.routine._id)">Delete routine</button>
-<a [routerLink]="['']"> Back to routine list </a>
+<div class="back-link">
+  <a [routerLink]="['']"></a>
+</div>
+</div>

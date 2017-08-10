@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class RoutineListComponent implements OnInit {
   routines:Observable<Array<object>>;
+  isHidden:boolean = true;
   constructor(private routineService: RoutineService) { }
 
   ngOnInit() {
