@@ -10,6 +10,7 @@ export class LoginFormComponent implements OnInit {
   error:string;
   username:string;
   password:string;
+  isHidden:boolean = false;
   constructor(private session: SessionService) { }
   
   ngOnInit() {
@@ -22,4 +23,5 @@ export class LoginFormComponent implements OnInit {
         (err) => this.error = err
       );
   }
+
 }

@@ -197,6 +197,7 @@ body {
   margin: 0 auto;
   position: relative;
   overflow: hidden;
+  min-height: 650px;
 }
 
 .wrapper.login-page {
@@ -286,7 +287,12 @@ body {
 }
 
 .wrapper.routine-page {
+  padding-bottom: 380px;
   background: linear-gradient(190deg, #FFC279 0%, #807FFE 80%);
+}
+
+.wrapper.routine-page form {
+  padding: 100px 50px 0;
 }
 
 .wrapper.routine-page-create {
@@ -340,6 +346,24 @@ body {
   font-size: 30px;
 }
 
+.reps-form {
+  padding: 0 !important;
+  display: none;
+}
+
+.reps-form label {
+  width: 50%;
+  float: left;
+}
+
+.reps-form.active {
+  display: block;
+}
+
+.reps-form .pre {
+  padding: 0;
+}
+
 .main-wrapper {
   height: 100vh;
   position: relative;
@@ -352,28 +376,59 @@ body {
   right: 50px;
 }
 
+.actions.abs {
+  position: absolute;
+  padding: 0;
+}
+
+.actions.sth .btn.act {
+  background-color: transparent;
+  color: #FFC279;
+  border: 3px solid #FFC279;
+}
+
+.actions.sth .btn.act:hover {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+.actions.sth .btn.act.train {
+  border: 3px solid white;
+  color: #FFFFFF;
+  background-color: #807FFE;
+}
+
+.actions.sth .btn.act.train:hover {
+  color: #FFFFFF;
+  background-color: transparent;
+}
+
+.actions.sth .logout:hover {
+  background-color: transparent !important;
+}
+
 .main-icon {
   position: absolute;
-  top: 200px;
-  width: 104px;
-  height: 84px;
+  top: 170px;
+  width: 96px;
   display: block;
   margin: 0 auto;
   left: 50%;
-  margin-left: -52px;
+  margin-left: -48px;
 }
 
 .unicorn {
   background: linear-gradient(190deg, #FF6771 0%, #FFC279 80%);
+  transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.unicorn.hidden {
+  height: 0;
 }
 
 .fit, .actions .btn:hover {
   font-family: "Kristi", cursive;
   letter-spacing: 3px;
-}
-
-.actions {
-  padding: 20px 0;
 }
 
 .actions .btn {
@@ -466,6 +521,11 @@ input {
   position: relative;
 }
 
+.exercise-list .actions.abs {
+  position: initial !important;
+  padding: 0;
+}
+
 .exercise-list:after {
   content: "";
   position: absolute;
@@ -491,33 +551,50 @@ select {
   position: relative;
 }
 
+.exercise-listed-wrapper {
+  width: 300px;
+  overflow: hidden;
+}
+
 .card {
-  margin-top: 30px;
-  max-height: 200px;
-  margin-left: -60px;
-  margin-right: -60px;
-  overflow-y: scroll;
-  background-color: #FFFFFF;
-  border-top: 3px solid #FFFFFF;
+  height: 80px;
+  margin-top: 10px;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
   transition: all 1s ease-in-out;
 }
 
-.exercise-listed-item:hover {
-  border: 2px solid orangered;
+.card li {
+  display: inline;
+  border: 3px solid #FFFFFF;
+  padding: 20px;
+  margin-right: 10px;
 }
 
-.exercise-listed-item label, .exercise-listed-item input {
+.card li label, .card li input {
   display: inline-block;
   width: auto;
-  color: #7B7979;
+  color: #FFFFFF;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+app-exercise-list .actions {
+  padding: 0;
 }
 
 .selected-exercises {
   padding: 30px 60px;
+  list-style-type: initial;
 }
 
 .selected-exercises li {
-  text-transform: uppercase;
+  cursor: pointer;
+  text-transform: capitalize;
   color: #FFFFFF;
   line-height: 23px;
 }
@@ -550,8 +627,25 @@ select {
   transition-delay: 2s;
 }
 
+.profile-menu-content .quote {
+  display: none;
+}
+
 .profile-menu-content.active {
   width: 100%;
+}
+
+.profile-menu-content.active .quote {
+  display: block;
+  margin: 220px auto 0;
+  max-width: 300px;
+  font-size: 55px;
+  line-height: 50px;
+}
+
+.profile-menu-content.active .quote .fit, .profile-menu-content.active .quote .actions .btn:hover, .actions .profile-menu-content.active .quote .btn:hover {
+  font-size: 85px;
+  color: #807FFE;
 }
 
 .profile-menu-content.active .actions {

@@ -18,6 +18,7 @@ export class RoutineDetailComponent implements OnInit {
   reps:number;
   weight:number;
   series: Array<object>;
+  isHidden:boolean = true;
   constructor(
     private routineService:RoutineService,
     private exerciseService:ExerciseService,

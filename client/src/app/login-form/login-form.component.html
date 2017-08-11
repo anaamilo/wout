@@ -1,7 +1,7 @@
-<div class="main-wrapper unicorn">
+<div class="main-wrapper unicorn" [ngClass]="{'hidden': isHidden}">
   <img src="assets/images/fuel-icon.png" class="main-icon" alt="">
-  <div class="actions">
-  <button class="btn primary" [routerLink]="['login', 'signin']"> Log in </button>
+  <div class="actions abs">
+  <button class="btn primary" [routerLink]="['login', 'signin']" (click)="isHidden = !isHidden"> Log in </button>
   <button class="btn" [routerLink]="['login', 'signup']"> Sign up </button>
   </div>
 </div>

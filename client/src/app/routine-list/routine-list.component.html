@@ -2,7 +2,10 @@
   <div class="profile-menu">
     <div class="profile-menu-tag" (click)="isHidden = !isHidden"></div>
     <div class="profile-menu-content" [ngClass]="{'active': !isHidden}">
-      <div class="actions">
+      <div class="quote">
+        Work hard and play <span class="fit">even harder</span>
+      </div>
+      <div class="actions abs">
         <button [routerLink]="['routine', 'add']" class="btn create-routine">New routine</button>
         <button class="btn logout" (click)="logout()">Log out</button>
       </div>
@@ -22,7 +25,7 @@
   <div>
     <ul class="routine-list">
       <li class="routine-list-item" *ngFor="let routine of routines">
-        <a [routerLink]="['exercises']"> 
+      <a [routerLink]="['routine', routine._id]"> 
           {{ routine.name | uppercase }}
         </a>
       </li>

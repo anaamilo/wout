@@ -4,20 +4,25 @@
     <option selected disabled>Select an option</option>
     <option *ngFor="let muscleGroup of muscleGroups">{{muscleGroup}}</option>
   </select>
-  <ul class="card exercise-listed">
-    <li class="exercise-listed-item" *ngFor="let exercise of exercises | filter:selectedGroup">
-      <input 
-      type="checkbox" 
-      name="{{exercise._id}}" 
-      ng-model="checkedList"
-      (change)="change(checkedList, exercise._id)" 
-      id="{{exercise._id}}"
-      (click)="toggleSelection($event)">
-      <label for="{{exercise._id}}">{{exercise.name}}</label>
-    </li>
-  </ul>
+  <div class="exercise-listed-wrapper">
+    <ul class="card exercise-listed">
+      <li class="exercise-listed-item" *ngFor="let exercise of exercises | filter:selectedGroup">
+        <input 
+        type="checkbox" 
+        name="{{exercise._id}}" 
+        ng-model="checkedList"
+        (change)="change(checkedList, exercise._id)" 
+        id="{{exercise._id}}"
+        (click)="toggleSelection($event)">
+        <label for="{{exercise._id}}">{{exercise.name}}</label>
+      </li>
+    </ul>
+  </div>
 </div>
-<div class="actions">
-  <button class="btn" (click)="addExercises()">Add exercises</button>
-  <button class="btn" [routerLink]="['']">Save</button>
+
+<div class="actions abs sth">
+  <button class="btn act train">Train</button>
+  <button class="btn act" (click)="addExercises()">Add exercises</button>
+  <button class="btn act" [routerLink]="['']">Save</button>
+  <button class="btn logout" (click)="remove(data.routine._id)">Delete routine</button>
 </div>

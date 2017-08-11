@@ -18,6 +18,7 @@ body {
   margin: 0 auto;
   position: relative;
   overflow: hidden;
+  min-height: 650px;
   &.login-page {
     @include gradient(190deg, $mango, 0%, $purple, 80%);
   }
@@ -99,7 +100,11 @@ body {
     }
   }
   &.routine-page {
+    padding-bottom: 380px;
     @include gradient(190deg, $mango, 0%, $purple, 80%);
+    form {
+      padding: 100px 50px 0;
+    }
   }
   &.routine-page-create {
     @include gradient(190deg, $white, 0%, $purple, 80%);
@@ -141,32 +146,27 @@ body {
     background-position: center;
     background-repeat: no-repeat;
   }
-
-}
-
-.ui-icon {
-
-  // &-search {
-  //   &:after {
-  //     content: '';
-  //     position: absolute;
-  //     top: 100%;
-  //     width: 3px;
-  //     height: 75%;
-  //     background-color: white;
-  //     left: calc(50% - 1px);
-  //   }
-  //   border: 3px solid white;
-  //   border-radius: 50%;
-  //   transform: scale(0.65) rotate(-45deg);
-  // }
-
 }
 
 .add-routine {
   background-color: $white;
   border: none;
   font-size: 30px;
+}
+
+.reps-form {
+  padding: 0!important;
+  display: none;
+  label {
+    width: 50%;
+    float: left;
+  }
+  &.active {
+    display: block;
+  }
+  .pre {
+    padding: 0;
+  }
 }
 
 .main-wrapper {
@@ -179,21 +179,51 @@ body {
   bottom: 60px;
   left: 50px;
   right: 50px;
+  &.abs {
+    position: absolute;
+    padding: 0;
+  }
+  &.sth {
+    .btn.act {
+      background-color: transparent;
+      color: $mango;
+      border: 3px solid $mango;
+      &:hover {
+        color: $white;
+        border-color: $white;
+      }
+      &.train {
+        border: 3px solid white;
+        color: $white;
+        background-color: $purple;
+        &:hover {
+          color: $white;
+          background-color: transparent;
+        }
+      }
+    }
+    .logout:hover {
+      background-color: transparent!important;
+    }
+  }
 }
 
 .main-icon {
   position: absolute;
-  top: 200px;
-  width: 104px;
-  height: 84px;
+  top: 170px;
+  width: 96px;
   display: block;
   margin: 0 auto;
   left: 50%;
-  margin-left: -52px;
+  margin-left: -48px;
 }
 
 .unicorn {
   @include gradient(190deg, $grapefruit, 0%, $mango, 80%);
+  transition: all $slow $easing;
+  &.hidden {
+    height: 0;
+  }
 }
 
 .fit {
@@ -202,7 +232,6 @@ body {
 }
 
 .actions {
-  padding: 20px 0;
   .btn {
     text-transform: uppercase;
     padding: 20px 40px;
@@ -286,6 +315,12 @@ input {
 
 .exercise-list {
   position: relative;
+  .actions {
+    &.abs {
+      position: initial!important;
+      padding: 0;
+    }
+  }
   &:after {
     content: "";
     position: absolute;
@@ -312,33 +347,50 @@ select {
   position: relative;
 }
 
-.card {
-  // box-shadow: 0 10px 20px 0 rgba(0, 0, 0, .5);
-  margin-top: 30px;
-  max-height: 200px;
-  margin-left: -60px;
-  margin-right: -60px;
-  overflow-y: scroll;
-  background-color: $white;
-  border-top: 3px solid $white;
-  transition: all 1s ease-in-out;
+.exercise-listed-wrapper {
+  width: 300px;
+  overflow: hidden;
 }
 
-.exercise-listed-item {
-  &:hover {
-    border: 2px solid orangered;
+
+.card {
+  // box-shadow: 0 10px 20px 0 rgba(0, 0, 0, .5);
+  height: 80px;
+  margin-top: 10px;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  transition: all 1s ease-in-out;
+  li {
+    display: inline;
+    border: 3px solid $white;
+    padding: 20px;
+    margin-right: 10px;
+    label, input {
+      display: inline-block;
+      width: auto;
+      color: $white;
+    }
   }
-  label, input {
-    display: inline-block;
-    width: auto;
-    color: $grayDarker;
+}
+
+  ::-webkit-scrollbar { 
+    display: none;
+  }
+
+app-exercise-list {
+  .actions {
+    padding: 0;
   }
 }
 
 .selected-exercises {
   padding: 30px 60px;
+  list-style-type: initial;
   li {
-    text-transform: uppercase;
+    cursor: pointer;
+    text-transform: capitalize;
     color: $white;
     line-height: 23px;
     + li {
@@ -367,11 +419,24 @@ select {
     transition: all $slow $easing;
     transition-delay: $slow;
   }
+  .quote {
+    display: none;
+  }
   &.active {
     width: 100%;
+    .quote {
+      display: block;
+      margin: 220px auto 0;
+      max-width: 300px;
+      font-size: 55px;
+      line-height: 50px;
+      .fit {
+        font-size: 85px;
+        color: $purple;
+      }
+    }
     .actions {
       display: block;
     }
   }
 }
-
